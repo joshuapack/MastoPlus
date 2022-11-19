@@ -34,7 +34,7 @@ namespace Apps {
 async function registerApplication (): Promise<Apps.registerApplicationReturnData> {
   const formData: Apps.registerApplicationFormData = {
     client_name: clientName,
-    redirect_uris: location.origin,
+    redirect_uris: location.origin + location.pathname,
     scopes: scopes
   }
 

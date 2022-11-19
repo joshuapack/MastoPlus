@@ -23,9 +23,9 @@
         <mu-list-item v-for="(hashTag, index) in searchResults.hashtags" :key="index"
                       class="hashtag-result-card" :ripple="false">
           <mu-list-item-title class="hash-tag ellipsis-text primary-read-text-color"
-                              v-html="hashTag" @click="onCheckHashTagTimeLine(hashTag)"/>
-          <mu-list-item-action v-if="!appStatus.settings.tags.includes(hashTag)">
-            <mu-icon class="operate-btn" value="playlist_add" @click="onSaveHashTag(hashTag)"/>
+                              v-html="hashTag.name" @click="onCheckHashTagTimeLine(hashTag.name)"/>
+          <mu-list-item-action v-if="!appStatus.settings.tags.includes(hashTag.name)">
+            <mu-icon class="operate-btn" value="playlist_add" @click="onSaveHashTag(hashTag.name)"/>
           </mu-list-item-action>
         </mu-list-item>
 

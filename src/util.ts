@@ -7,7 +7,7 @@ import * as _ from 'underscore'
 import * as $ from 'jquery'
 
 export function patchApiUri (uri: string): string {
-  const targetServerUri = store.state.mastodonServerUri || 'https://pawoo.net'
+  const targetServerUri = store.state.mastodonServerUri
   return `${targetServerUri}${uri}`
 }
 

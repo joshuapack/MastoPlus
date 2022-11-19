@@ -15,7 +15,7 @@ async function fetchOAuthToken (): Promise<fetchOAuthTokenReturnData> {
   const formData = {
     client_id: OAuthInfo.clientId,
     client_secret: OAuthInfo.clientSecret,
-    redirect_uri: location.origin,
+    redirect_uri: location.origin + location.pathname,
     grant_type: "authorization_code",
     code: OAuthInfo.code
   }

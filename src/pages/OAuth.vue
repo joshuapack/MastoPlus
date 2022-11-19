@@ -44,9 +44,6 @@
   // and store this token
 
   const mastodonServerUriList = [
-    { value: 'pawoo.net', favicon: 'https://pawoo.net/favicon.png' },
-    // todo get mastodon favicon
-    { value: 'mastodon.social', favicon: 'https://raw.githubusercontent.com/tootsuite/mastodon/master/public/favicon.ico' }
   ]
 
   function isURL(str) {
@@ -105,7 +102,7 @@
     goToMastodonServerForOAuth () {
       window.location.href = `${this.prefix + this.validateForm.mastodonServerUri}/oauth/authorize` +
         `?client_id=` + encodeURIComponent(this.OAuthInfo.clientId) +
-        `&redirect_uri=${location.origin}` +
+        `&redirect_uri=${location.origin}${location.pathname}` +
         `&response_type=code&scope=read write follow`
     }
   }
