@@ -1,6 +1,6 @@
 {
-  "name"              : "Cuckoo Social",
-  "short_name"        : "Cuckoo+",
+  "name"              : "MastoPlus",
+  "short_name"        : "MastoPlus",
   "start_url"         : "/",
   "display"           : "standalone",
   "icons": [

@@ -57,7 +57,7 @@ const StreamingEventTypes = {
   FILTERS_CHANGED: 'filters_changed'
 }
 
-const TITLE = 'Cuckoo+'
+const TITLE = 'Masto+'
 
 const StatusCardTypes = {
   LINK: 'link',

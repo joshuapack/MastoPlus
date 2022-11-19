@@ -1,5 +1,5 @@
 {
-  "name": "cuckoo.plus",
+  "name": "mastoplus",
   "version": "0.3.28",
   "tag": "release-22.10.0",
   "description": "A third-party client for mastodon",
@@ -85,13 +85,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NanaMorse/Cuckoo.Plus.git"
+    "url": "git+https://github.com/joshuapack/MastoPlus.git"
   },
   "author": "Nana.Morse, KTachibanaM, roytam1, cutls, hakaba-hitoyo",
   "thanks": "roytam1, fhoshino",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NanaMorse/Cuckoo.Plus/issues"
+    "url": "https://github.com/joshuapack/MastoPlus/issues"
   },
-  "homepage": "https://github.com/NanaMorse/Cuckoo.Plus#readme"
+  "homepage": "https://github.com/joshuapack/MastoPlus#readme"
 }

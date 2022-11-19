@@ -48,9 +48,9 @@
     <div class="bottom-info-area secondary-read-text-color">
       <div style="margin-bottom: 6px">
         <a class="secondary-read-text-color">
-          ©{{(new Date().getFullYear()).toString().split('').reverse().join('') }} Cuckoo</a>
+          ©{{(new Date().getFullYear()).toString().split('').reverse().join('') }} MastoPlus</a>
         •
-        <a class="secondary-read-text-color link-text" href="https://github.com/NanaMorse/Cuckoo.Plus" target="_blank">Github</a>
+        <a class="secondary-read-text-color link-text" href="https://github.com/joshuapack/MastoPlus" target="_blank">Github</a>
       </div>
       <a class="secondary-read-text-color link-text" :href="mastodonServerUri" target="_blank">{{$t($i18nTags.drawer.toHostInstance)}}</a>
       <div style="margin-top: 6px">

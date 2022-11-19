@@ -1,7 +1,7 @@
 import { I18nTags } from '@/constant'
 
 const oauth = {
-  [I18nTags.oauth.form_brand]: 'Cuckoo Plus',
+  [I18nTags.oauth.form_brand]: 'MastoPlus',
   [I18nTags.oauth.login_hint]: 'Authorize Login',
   [I18nTags.oauth.server_input_label]: 'Mastodon URL',
   [I18nTags.oauth.please_input_server_url]: 'please input Mastodon URL',

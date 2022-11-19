@@ -1,6 +1,6 @@
-# Cuckoo.Plus [![Build Status](https://travis-ci.com/NanaMorse/Cuckoo.Plus.svg?branch=master)](https://travis-ci.com/NanaMorse/Cuckoo.Plus)
+# MastoPlus
 
-alpha view link: [Cuckoo.Social](http://www.cuckoo.social)
+Preview link: [https://www.joshuapack.pw/gplus](https://www.joshuapack.pw/gplus)
 
 Start project.
 ```
@@ -15,7 +15,11 @@ npm run build
 ```
 the files located in public folder are all you need
 
-项目完成状态可以在 [Cuckoo.Social](http://www.cuckoo.social) 中自行体验，没有的就是没做，点不动的一般也是没做。
+## Notes
+
+I am working on cleaning up and updating the code base so that things work again and also hopefully get the newest version of NPM to run this. Right now, I had to get NPM v10 to get it working.
+
+Mastodon link: [@joshuapack@gaminginthe.cloud](https://gaminginthe.cloud/@joshuapack)
 
 ## Licence
 MIT.

@@ -48,7 +48,7 @@ const drawer = {
   [I18nTags.drawer.profile]: '個人資料',
   [I18nTags.drawer.settings]: '設定',
   [I18nTags.drawer.logout]: '登出',
-  [I18nTags.drawer.do_logout_message_confirm]: '確定登出Cuckoo？' ,
+  [I18nTags.drawer.do_logout_message_confirm]: '確定登出MastoPlus？' ,
   [I18nTags.drawer.do_logout_message_yes]: '是',
   [I18nTags.drawer.do_logout_message_no]: '否',
   [I18nTags.drawer.toHostInstance]: '前往當前實例站點',
