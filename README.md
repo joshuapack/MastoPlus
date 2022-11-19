@@ -17,7 +17,7 @@ the files located in public folder are all you need
 
 ## Notes
 
-I am working on cleaning up and updating the code base so that things work again and also hopefully get the newest version of NPM to run this. Right now, I had to get NPM v10 to get it working.
+I am working on cleaning up and updating the code base so that things work again and also hopefully get the newest version of NPM to run this. Right now, I had to get NPM v6.14.15 to get it working.
 
 Mastodon link: [@joshuapack@gaminginthe.cloud](https://gaminginthe.cloud/@joshuapack)
 
