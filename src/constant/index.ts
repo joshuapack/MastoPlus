@@ -40,7 +40,7 @@ const ThemeNames = {
   GOOGLE_PLUS: 'Google Plus',
   DARK: 'Dark',
   GREEN_LIGHT: 'Green Light',
-  CUCKOO_HUB: 'Cuckoo Hub'
+  BLACK_ORANGE: 'Black Orange'
 }
 
 const NotificationTypes = {

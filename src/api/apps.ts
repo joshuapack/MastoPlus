@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { patchApiUri } from '@/util'
 
-const clientName = 'Cuckoo.Plus'
+const clientName = 'MastoPlus'
 const scopes = 'read write follow'
 
 namespace Apps {

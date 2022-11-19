@@ -85,7 +85,7 @@ async function unMuteStatusById (id: string) {
 }
 
 async function getStatusCardInfoById (id: string): Promise<{ data: mastodonentities.Card }> {
-  return Vue.http.get(patchApiUri(`/api/v1/statuses/${id}/card`)) as any
+  return Vue.http.get(patchApiUri(`/api/v1/statuses/${id}`)) as any
 }
 
 export {

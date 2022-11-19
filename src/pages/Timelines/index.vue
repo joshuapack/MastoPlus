@@ -144,7 +144,7 @@
     currentFocusCardId: string = noneCardFocusId
 
     get cardFocusStyle () {
-      const darkThemeList = [ ThemeNames.DARK, ThemeNames.CUCKOO_HUB ]
+      const darkThemeList = [ ThemeNames.DARK, ThemeNames.BLACK_ORANGE ]
       const shadowBaseColor = darkThemeList.indexOf(this.appStatus.settings.theme) !== -1 ? 255 : 0
       return {
         'box-shadow': `0 0 20px rgba(${shadowBaseColor}, ${shadowBaseColor}, ${shadowBaseColor},0.3)`

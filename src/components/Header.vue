@@ -4,10 +4,7 @@
       <mu-button v-if="isOAuthUser" icon @click.stop="onMenuBtnClick" slot="left">
         <mu-icon value="menu"></mu-icon>
       </mu-button>
-      <div class="host-mastodon-url cuckoo-hub-logo" v-if="isCuckooHubTheme">
-        <span>Cuck</span><span>Hub</span>
-      </div>
-      <span v-if="!isCuckooHubTheme" class="host-mastodon-url" @click="onHostMastodonUrlClick">{{parsedMastodonServerUri}}</span>
+      <span class="host-mastodon-url" @click="onHostMastodonUrlClick">{{parsedMastodonServerUri}}</span>
       <mu-button v-if="isOAuthUser" ref="notificationBtn" icon @click.stop="onOpenNotificationPanel" slot="right">
         <mu-icon v-if="appStatus.unreadNotificationCount === 0" value="notifications"></mu-icon>
         <mu-badge class="notification-badge" v-if="appStatus.unreadNotificationCount > 0" :content="String(appStatus.unreadNotificationCount)" circle color="primary" />
@@ -128,11 +125,11 @@
     }
 
     get shouldUseSecondaryThemeHeader () {
-      return this.isCuckooHubTheme
+      return this.isBlackOrangeTheme
     }
 
-    get isCuckooHubTheme () {
-      return this.appStatus.settings.theme === ThemeNames.CUCKOO_HUB
+    get isBlackOrangeTheme () {
+      return this.appStatus.settings.theme === ThemeNames.BLACK_ORANGE
     }
 
     mounted () {

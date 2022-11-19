@@ -13,5 +13,5 @@ const colorSet = Object.assign({}, darkTheme.colorSet, {
 
 export default {
   colorSet,
-  toFavIconPath: 'cuckoo_hub'
+  toFavIconPath: 'dark'
 }

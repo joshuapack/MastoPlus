@@ -10,7 +10,7 @@
 
         <mu-form-item class="server-input-form-item" prop="mastodonServerUri" :rules="uriRules" :label="$t($i18nTags.oauth.server_input_label)">
           <mu-auto-complete prop="mastodonServerUri" class="server-input" :data="mastodonServerUriList" :full-width="true"
-                            :max-search-results="5" label-float :prefix="prefix" @keydown.enter="onSubmitServerName"
+                            :max-search-results="5" label-float :prefix="prefix" v-on:keyup.enter="onSubmitServerName"
                             v-model="validateForm.mastodonServerUri" avatar>
             <template slot-scope="scope">
               <mu-list-item-action>
@@ -79,6 +79,7 @@
 
     onSubmitServerName () {
       (this.$refs as any).form.validate().then(async (pass) => {
+        console.log(pass);
         if (!pass) return
 
         this.updateMastodonServerUri(this.prefix + this.validateForm.mastodonServerUri)

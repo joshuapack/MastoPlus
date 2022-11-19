@@ -1,5 +1,5 @@
 // @ts-ignore
-import cuckooHubTheme from './presets/cuckoohub'
+import blackOrangeTheme from './presets/blackorange'
 import greenLightTheme from './presets/greenlight'
 import darkTheme from './presets/dark'
 import googlePlusTheme from './presets/googleplus'
@@ -25,9 +25,9 @@ const presetThemeInfo = {
     less: stylePattern(Object.assign({}, baseColor, greenLightTheme.colorSet)),
     css: null
   },
-  [ThemeNames.CUCKOO_HUB]: {
-    theme: cuckooHubTheme,
-    less: stylePattern(Object.assign({}, baseColor, cuckooHubTheme.colorSet)),
+  [ThemeNames.BLACK_ORANGE]: {
+    theme: blackOrangeTheme,
+    less: stylePattern(Object.assign({}, baseColor, blackOrangeTheme.colorSet)),
     css: null
   }
 }

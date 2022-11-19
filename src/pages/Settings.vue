@@ -139,7 +139,7 @@
     { value: ThemeNames.GOOGLE_PLUS },
     { value: ThemeNames.DARK },
     { value: ThemeNames.GREEN_LIGHT },
-    { value: ThemeNames.CUCKOO_HUB },
+    { value: ThemeNames.BLACK_ORANGE },
   ]
 
   @Component({})

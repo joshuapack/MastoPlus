@@ -48,7 +48,7 @@
     <div class="bottom-info-area secondary-read-text-color">
       <div style="margin-bottom: 6px">
         <a class="secondary-read-text-color">
-          ©{{(new Date().getFullYear()).toString().split('').reverse().join('') }} MastoPlus</a>
+          ©{{(new Date().getFullYear()).toString() }} MastoPlus</a>
         •
         <a class="secondary-read-text-color link-text" href="https://github.com/joshuapack/MastoPlus" target="_blank">Github</a>
       </div>
