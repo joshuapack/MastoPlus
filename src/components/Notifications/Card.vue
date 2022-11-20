@@ -42,6 +42,10 @@
 
     $i18nTags
 
+    $router
+    
+    $routersInfo
+
     isLoadingSingleCard: boolean = false
 
     isLoading: boolean = false
@@ -117,7 +121,13 @@
         const targetStatus = await prepareRootStatus(notification.status)
         this.isLoading = false
 
-        this.$emit('updateCurrentCheckStatus', targetStatus)
+        this.$router.push({
+          name: this.$routersInfo.statuses.name,
+          params: {
+            statusId: targetStatus.id
+          }
+        })
+        // this.$emit('updateCurrentCheckStatus', targetStatus)
       }
     }
 
