@@ -35,7 +35,7 @@ const notifications = {
       }
 
     } catch (e) {
-
+      console.error(e)
     }
   }
 }

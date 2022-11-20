@@ -151,6 +151,9 @@
     }
 
     onOpenNotificationPanel () {
+      if (this.isOAuthUser) {
+        this.notificationBtnTrigger = this.$refs.notificationBtn.$el
+      }
       this.onFetchMoreNotifications()
       this.updateUnreadNotificationCount(0)
       this.updateNotificationsPanelStatus(!this.appStatus.isNotificationsPanelOpened)
