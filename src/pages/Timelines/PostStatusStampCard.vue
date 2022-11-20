@@ -37,7 +37,7 @@
     }
 
     onUploadMedia () {
-
+      this.$emit('click', true)
     }
   }
 

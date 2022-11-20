@@ -103,6 +103,7 @@
 
     get mediaAreaWidth () {
       if (!this.isMounted) return null
+      if (!this.$refs.mediaArea) return null
 
       return this.$refs.mediaArea.clientWidth
     }

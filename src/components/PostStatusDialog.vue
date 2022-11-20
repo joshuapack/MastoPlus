@@ -245,6 +245,8 @@
 
     @Prop() close: Function
 
+    @Prop() openCamera: boolean
+
     @State('appStatus') appStatus
 
     @State('currentUserAccount') currentUserAccount
@@ -273,6 +275,11 @@
           this.$refs.cuckooInput.focus()
 
           new InjectDragAndDropEvents(this)
+          
+          if (this.openCamera === true) {
+            this.$emit('update:openCamera', false)
+            this.onSelectMediaFiles()
+          }
         })
       } else {
         this.setVisibilitySelectPopOverDisplay(false)

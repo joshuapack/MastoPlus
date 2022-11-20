@@ -40,7 +40,7 @@
       <mu-icon value="edit" />
     </mu-button>
 
-    <post-status-dialog :open.sync="isPostStatusDialogOpening"/>
+    <post-status-dialog :open.sync="isPostStatusDialogOpening" :openCamera.sync="openCamera" />
 
     <new-status-notice-button />
   </div>
@@ -140,6 +140,8 @@
     snackBarMessage: string = ''
 
     isPostStatusDialogOpening: boolean = false
+
+    openCamera: boolean = false
 
     currentFocusCardId: string = noneCardFocusId
 
@@ -260,10 +262,13 @@
       this.isLoading = false
     }
 
-    showNewPostDialogPanel () {
+    showNewPostDialogPanel (showCamera: boolean) {
       // todo handle history.back() event
       // use vue router?
       this.isPostStatusDialogOpening = true
+      if (showCamera) {
+        this.openCamera = showCamera;
+      }
     }
 
     isTimeLineNameEqualCurrentRoute (timeLineName: string): boolean {
