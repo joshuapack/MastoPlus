@@ -50,7 +50,7 @@
         <a class="secondary-read-text-color link-text" href="https://github.com/joshuapack/MastoPlus" target="_blank">
           ©{{(new Date().getFullYear()).toString() }} MastoPlus</a>
           •
-          V0.4.1</a>
+          V0.4.2</a>
       </div>
       <a class="secondary-read-text-color link-text" :href="mastodonServerUri" target="_blank">{{$t($i18nTags.drawer.toHostInstance)}}</a>
       <div style="margin-top: 6px">
@@ -134,6 +134,8 @@
     @Mutation('updateDrawerOpenStatus') updateDrawerOpenStatus
 
     @Mutation('updateTags') updateTags
+
+    @Mutation('clearAllOAuthInfo') clearAllOAuthInfo
 
     @Action('updateTimeLineStatuses') updateTimeLineStatuses
 
@@ -230,7 +232,7 @@
         cancelLabel: this.$t(this.$i18nTags.drawer.do_logout_message_no),
       })).result
       if (doLogout) {
-        localStorage.clear()
+        this.clearAllOAuthInfo()
         location.href = '/'
       }
     }
