@@ -5,10 +5,10 @@ const colorSet = Object.assign({}, darkTheme.colorSet, {
   '@secondaryColor': '#FF9900',
 
   '@textColor': '#fff',
-  '@secondaryTextColor': '#666',
+  '@secondaryTextColor': '#999',
 
   '@backgroundColor': '#000',
-  '@dialogBackgroundColor': '#1b1b1b'
+  '@dialogBackgroundColor': '#222'
 })
 
 export default {

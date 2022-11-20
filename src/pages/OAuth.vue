@@ -6,12 +6,20 @@
 
       <p class="oauth-login-hint">{{$t($i18nTags.oauth.login_hint)}}</p>
 
-      <mu-form ref="form" :model="validateForm">
+      <mu-form ref="form" :model="validateForm" @submit.prevent="onSubmitServerName">
 
         <mu-form-item class="server-input-form-item" prop="mastodonServerUri" :rules="uriRules" :label="$t($i18nTags.oauth.server_input_label)">
-          <mu-auto-complete prop="mastodonServerUri" class="server-input" :data="mastodonServerUriList" :full-width="true"
-                            :max-search-results="5" label-float :prefix="prefix" v-on:keyup.enter="onSubmitServerName"
-                            v-model="validateForm.mastodonServerUri" avatar>
+          <mu-auto-complete 
+            prop="mastodonServerUri"
+            class="server-input"
+            :data="mastodonServerUriList"
+            :full-width="true"
+            :max-search-results="5"
+            label-float
+            :prefix="prefix"
+            v-model="validateForm.mastodonServerUri"
+            avatar
+          >
             <template slot-scope="scope">
               <mu-list-item-action>
                 <mu-avatar>
@@ -79,7 +87,6 @@
 
     onSubmitServerName () {
       (this.$refs as any).form.validate().then(async (pass) => {
-        console.log(pass);
         if (!pass) return
 
         this.updateMastodonServerUri(this.prefix + this.validateForm.mastodonServerUri)
