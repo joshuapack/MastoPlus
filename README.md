@@ -1,6 +1,6 @@
 # MastoPlus
 
-Preview link: [https://www.joshuapack.pw/gplus](https://www.joshuapack.pw/gplus)
+Preview link: [https://mastoplus.com](https://mastoplus.com)
 
 Start project.
 ```
