@@ -6,6 +6,9 @@
         <mu-load-more loading-text="" @load="loadNotifications(true)" :loading="isLoadingNotifications">
           <mu-flex v-if="!hideHeader" class="panel-header" calign-items="center">
             <mu-flex justify-content="start" fill>
+              <mu-button icon @click="updateNotificationsPanelStatus(false)">
+                <mu-icon class="primary-read-text-color" value="close" />
+              </mu-button>
               <mu-sub-header class="secondary-read-text-color">Notifications</mu-sub-header>
             </mu-flex>
             <mu-flex justify-content="end" fill>
