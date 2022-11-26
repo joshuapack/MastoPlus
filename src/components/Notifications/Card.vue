@@ -20,6 +20,8 @@
     <mu-list-item-action v-if="shouldShowFollowOperateBtn(notification, followOperateBtnTypes.UN_FOLLOW)">
       <mu-icon @click.stop="onUnFollowingAccount(notification.account.id)" class="follow-action secondary-theme-text-color" value="person_add_disabled" />
     </mu-list-item-action>
+
+    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
   </mu-list-item>
 </template>
 
@@ -29,13 +31,18 @@
   import { NotificationTypes, ThemeNames, I18nTags } from '@/constant'
   import { mastodonentities } from '@/interface'
   import { prepareRootStatus, formatHtml } from "@/util"
+  import AccountModal from '@/components/AccountModal'
 
   const notificationTypeToI18nTagsMap = {
     [NotificationTypes.FAVOURITE]: I18nTags.notifications.favourited_your_status,
     [NotificationTypes.REBLOG]: I18nTags.notifications.boosted_your_status
   }
 
-  @Component({})
+  @Component({
+    components: {
+      'account-modal': AccountModal,
+    }
+  })
   class Card extends Vue {
 
     $t
@@ -68,6 +75,10 @@
 
     @Getter('getAccountDisplayName') getAccountDisplayName
 
+    isAccountModalOpening: boolean = false
+
+    userId: string = ''
+
     onNotificationContentClick () {}
 
     get notificationCardStyle () {
@@ -88,7 +99,8 @@
     }
 
     onCheckUserAccountPage (account: mastodonentities.Account) {
-      window.open(account.url, "_blank")
+        this.isAccountModalOpening = true
+        this.userId = account.id
     }
 
     getNotificationSubTitle (notification) {
@@ -112,7 +124,8 @@
     async onNotificationCardClick (notification: mastodonentities.Notification) {
       if (!notification.status) {
         if (notification.type === NotificationTypes.FOLLOW) {
-          window.open(notification.account.url, "_blank")
+          this.isAccountModalOpening = true
+          this.userId = notification.account.id
         }
       } else {
         this.isLoadingSingleCard = false

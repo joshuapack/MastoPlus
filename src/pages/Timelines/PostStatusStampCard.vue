@@ -15,6 +15,8 @@
         <mu-icon class="camera-icon" value="camera_alt" />
       </mu-button>
     </div>
+
+    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
   </mu-card>
 </template>
 
@@ -22,14 +24,24 @@
   import { Vue, Component } from 'vue-property-decorator'
   import { State } from 'vuex-class'
   import { mastodonentities } from '@/interface'
+  import AccountModal from '@/components/AccountModal'
 
-  @Component({})
+  @Component({
+    components: {
+      'account-modal': AccountModal,
+    }
+  })
   class PostStatusStampCard extends Vue {
 
     @State('currentUserAccount') currentUserAccount: mastodonentities.AuthenticatedAccount
 
+    isAccountModalOpening: boolean = false
+
+    userId: string = ''
+
     onCheckUserAccountPage () {
-      window.open(this.currentUserAccount.url, "_blank")
+        this.isAccountModalOpening = true
+        this.userId = this.currentUserAccount.id
     }
 
     onStampCardClick () {

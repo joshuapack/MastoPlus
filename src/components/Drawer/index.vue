@@ -58,6 +58,8 @@
       </div>
     </div>
 
+    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
+
   </mu-drawer>
 </template>
 
@@ -68,6 +70,8 @@
   import { TimeLineTypes, UiWidthCheckConstants, RoutersInfo, I18nTags } from '@/constant'
   import Search from './Search'
   import store from '@/store'
+  import AccountModal from '@/components/AccountModal'
+
 
   const baseRouterInfoList = [
     {
@@ -104,7 +108,8 @@
 
   @Component({
     components: {
-      'search': Search
+      'search': Search,
+      'account-modal': AccountModal,
     }
   })
   class Drawer extends Vue {
@@ -138,6 +143,10 @@
     @Mutation('clearAllOAuthInfo') clearAllOAuthInfo
 
     @Action('updateTimeLineStatuses') updateTimeLineStatuses
+
+    isAccountModalOpening: boolean = false
+
+    userId: string = ''
 
     @Watch('shouldDrawerDocked')
     onShouldDrawerDockedChanged () {
@@ -182,15 +191,8 @@
 
     async onBaseRouteItemClick (clickedRouterValue: string) {
       if (clickedRouterValue === 'profile') {
-        // todo
-        // this.$router.push({
-        //   name: this.$routersInfo.accounts.name,
-        //   params: {
-        //     accountId: this.currentUserAccount.id
-        //   }
-        // })
-
-        return window.open(this.currentUserAccount.url, '_blank')
+        this.isAccountModalOpening = true
+        this.userId = this.currentUserAccount.id
       } else {
 
         const targetPath = baseRouterInfoList.find(routerInfo => routerInfo.value === clickedRouterValue).to

@@ -7,7 +7,7 @@
              @cuckooDrop="onDropFile">
 
       <card-header :status="status" @deleteStatus="isCardLoading = true"
-                   @muteStatus="onMuteStatus" @muteUser="onMuteUser"/>
+                   @muteStatus="onMuteStatus" @muteUser="onMuteUser" />
 
       <div class="spoiler-text-area primary-read-text-color" v-if="status.spoiler_text">
         <span v-html="status.spoiler_text"/>

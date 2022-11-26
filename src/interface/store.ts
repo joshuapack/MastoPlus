@@ -6,6 +6,7 @@ export namespace cuckoostore {
     OAuthInfo: OAuthInfo
     mastodonServerUri: string
     currentUserAccount: mastodonentities.Account
+    selectedUserAccount: mastodonentities.Account
 
     timelines: {
       home: Array<string>

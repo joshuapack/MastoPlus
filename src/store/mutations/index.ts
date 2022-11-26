@@ -122,6 +122,14 @@ const mutations = {
     localStorage.setItem('currentUserAccount', JSON.stringify(currentUserAccount))
   },
 
+  updateSelectedUserAccount (state: cuckoostore.stateInfo, selectedUserAccount: mastodonentities.Account) {
+    selectedUserAccount.display_name = formatAccountDisplayName(selectedUserAccount)
+
+    state.selectedUserAccount = selectedUserAccount
+
+    localStorage.setItem('selectedUserAccount', JSON.stringify(selectedUserAccount))
+  },
+
   updateCustomEmojis (state: cuckoostore.stateInfo, customEmojis: Array<mastodonentities.Emoji>) {
     state.customEmojis = customEmojis
 

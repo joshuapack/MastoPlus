@@ -101,6 +101,8 @@
         </mu-list-item>
       </mu-list>
     </mu-popover>
+
+    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
   </div>
 </template>
 
@@ -113,11 +115,13 @@
   import LinkPreviewPanel from './LinkPreviewPanel'
   import {getNetEaseMusicFrameLinkFromContentLink, getYoutubeVideoFrameLinkFromContentLink } from '@/util'
   import * as $ from "jquery"
+  import AccountModal from '@/components/AccountModal'
 
   @Component({
     components: {
       'media-panel': MediaPanel,
       'link-preview-panel': LinkPreviewPanel,
+      'account-modal': AccountModal,
     }
   })
   class FullReplyListItem extends Vue {
@@ -155,6 +159,10 @@
     operationAreaStyle = null
 
     youtubeVideoIFrameHeight = 0
+
+    isAccountModalOpening: boolean = false
+
+    userId: string = ''
 
     get hasLinkCardInfo () {
       return this.cardMap[this.status.id]
@@ -219,7 +227,8 @@
     }
 
     onCheckUserAccountPage () {
-      window.open(this.status.account.url, "_blank")
+      this.isAccountModalOpening = true
+      this.userId = this.status.account.id
     }
 
     async onDeleteStatus () {

@@ -34,6 +34,8 @@ const state: cuckoostore.stateInfo = {
 
   currentUserAccount: getLocalSetting('currentUserAccount', null),
 
+  selectedUserAccount: getLocalSetting('selectedUserAccount', null),
+
   timelines: {
     home: getLocalSetting('home', []),
     public: [],

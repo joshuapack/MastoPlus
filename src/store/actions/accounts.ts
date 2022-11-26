@@ -18,6 +18,15 @@ const accounts = {
     } catch (e) {
 
     }
+  },
+
+  async fetchAccountInfoById ({ commit }, id: string) {
+    try {
+      const result = await Api.accounts.fetchAccountInfoById(id)
+      commit('updateSelectedUserAccount', result.data)
+    } catch (e) {
+
+    }
   }
 }
 

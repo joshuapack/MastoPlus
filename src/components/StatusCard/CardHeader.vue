@@ -50,6 +50,8 @@
       </mu-list>
     </mu-popover>
 
+    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
+
   </mu-card-header>
 </template>
 
@@ -58,8 +60,13 @@
   import { Getter, State, Action } from 'vuex-class'
   import * as moment from 'moment'
   import { mastodonentities } from '@/interface'
+  import AccountModal from '@/components/AccountModal'
 
-  @Component({})
+  @Component({
+    components: {
+      'account-modal': AccountModal,
+    }
+  })
   class CardHeader extends Vue {
 
     @Prop() status: mastodonentities.Status
@@ -97,6 +104,10 @@
 
     leftAreaStyle = null
 
+    isAccountModalOpening: boolean = false
+
+    userId: string = ''
+
     mounted () {
       if (this.isOAuthUser) {
         this.moreOperationTriggerBtn = this.$refs.moreOperationTriggerBtn
@@ -110,7 +121,8 @@
     }
 
     onCheckUserAccountPage () {
-      window.open(this.status.account.url, "_blank")
+      this.isAccountModalOpening = true
+      this.userId = this.status.account.id
     }
 
     onCheckStatusInSinglePage () {
