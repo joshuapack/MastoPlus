@@ -4,12 +4,14 @@ const yargs = require('yargs')
 const fs = require('fs')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MinifyPlugin = require("babel-minify-webpack-plugin");
+const { VueLoaderPlugin } = require('vue-loader')
 
 let { env } = yargs.argv
 if (!env) env = 'develop'
 const isEnvProduction = env === 'production'
 
 const plugins = [
+  new VueLoaderPlugin(),
   new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify(env)
   }),

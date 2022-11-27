@@ -386,7 +386,7 @@
         if((<FileReader>e.target).readyState !== 2) return
         if((<FileReader>e.target).error) return
 
-        const themeColorSet = JSON.parse((<FileReader>e.target).result)
+        const themeColorSet = JSON.parse((<FileReader>e.target).result as string)
         ThemeManager.importTheme(themeColorSet, fileName)
         this.shouldUpdateThemeOptions = this.shouldUpdateThemeOptions + 1
         this.themeName = fileName
