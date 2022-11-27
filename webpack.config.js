@@ -29,13 +29,12 @@ if (isEnvProduction) {
 module.exports = {
 
   devServer: {
-    contentBase: path.join(__dirname, '/public'),
-    publicPath: '/dist/',
+    static: {
+      directory: path.join(__dirname, 'public'),
+      watch: true,
+    },
     compress: true,
     port: 3000,
-    host: "0.0.0.0",
-    watchContentBase: true,
-    disableHostCheck: true
   },
 
   entry: './src/index.ts',
@@ -45,6 +44,7 @@ module.exports = {
   output: {
     libraryExport: 'default',
     path: path.resolve(__dirname, 'public/dist/'),
+    publicPath: '/dist',
     filename: 'bundle.js'
   },
 
@@ -105,12 +105,8 @@ module.exports = {
       },
 
       {
-        test: /\.css$/,
-        use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader"
-        }]
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
 
       {

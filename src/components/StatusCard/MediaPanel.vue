@@ -55,9 +55,6 @@
     $refs: {
       mediaArea: HTMLDivElement
       mediaPanelContainer: HTMLDivElement
-      lightBox: {
-        $el: HTMLDivElement
-      }
     }
 
     @Prop() mediaList?: Array<mastodonentities.Attachment>
