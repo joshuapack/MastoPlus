@@ -3,7 +3,7 @@
   "description": "A third-party client for mastodon",
   "scripts": {
     "dev": "webpack-dev-server --mode=development",
-    "build": "webpack --env=production --mode=development"
+    "build": "webpack --env=production --mode=production"
   },
   "dependencies": {
     "autosize": "^4.0.2",
