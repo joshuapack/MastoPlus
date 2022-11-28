@@ -1,6 +1,6 @@
 <template>
   <div class="theme-edit-panel-container">
-    <mu-dialog :open.sync="isDialogOpening" overlay-color="rgba(0,0,0,0.12)"
+    <mu-dialog :open.sync="isDialogOpening" overlay-color="rgba(0,0,0,0.8)"
                dialog-class="theme-edit-dialog default-theme-bg-color" :width="dialogWidth"
                :overlay-close="false"
                :overlay-opacity="1" :transition="transition" :fullscreen="shouldDialogFullScreen">

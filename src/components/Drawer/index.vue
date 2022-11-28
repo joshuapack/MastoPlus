@@ -57,9 +57,6 @@
         <a class="secondary-read-text-color link-text" @click="onTryLogout">{{$t($i18nTags.drawer.logout)}}</a>
       </div>
     </div>
-
-    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
-
   </mu-drawer>
 </template>
 
@@ -70,7 +67,6 @@
   import { TimeLineTypes, UiWidthCheckConstants, RoutersInfo, I18nTags } from '@/constant'
   import Search from './Search'
   import store from '@/store'
-  import AccountModal from '@/components/AccountModal'
 
 
   const baseRouterInfoList = [
@@ -109,7 +105,6 @@
   @Component({
     components: {
       'search': Search,
-      'account-modal': AccountModal,
     }
   })
   class Drawer extends Vue {
@@ -142,11 +137,11 @@
 
     @Mutation('clearAllOAuthInfo') clearAllOAuthInfo
 
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
+
     @Action('updateTimeLineStatuses') updateTimeLineStatuses
-
-    isAccountModalOpening: boolean = false
-
-    userId: string = ''
 
     @Watch('shouldDrawerDocked')
     onShouldDrawerDockedChanged () {
@@ -191,8 +186,8 @@
 
     async onBaseRouteItemClick (clickedRouterValue: string) {
       if (clickedRouterValue === 'profile') {
-        this.isAccountModalOpening = true
-        this.userId = this.currentUserAccount.id
+        this.updateSelectedAccountId(this.currentUserAccount.id)
+        this.updateAccountModalStatus(true)
       } else {
 
         const targetPath = baseRouterInfoList.find(routerInfo => routerInfo.value === clickedRouterValue).to

@@ -20,29 +20,22 @@
     <mu-list-item-action v-if="shouldShowFollowOperateBtn(notification, followOperateBtnTypes.UN_FOLLOW)">
       <mu-icon @click.stop="onUnFollowingAccount(notification.account.id)" class="follow-action secondary-theme-text-color" value="person_add_disabled" />
     </mu-list-item-action>
-
-    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
   </mu-list-item>
 </template>
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import { State, Getter, Action } from 'vuex-class'
+  import { State, Getter, Action, Mutation } from 'vuex-class'
   import { NotificationTypes, ThemeNames, I18nTags } from '@/constant'
   import { mastodonentities } from '@/interface'
   import { prepareRootStatus, formatHtml } from "@/util"
-  import AccountModal from '@/components/AccountModal'
 
   const notificationTypeToI18nTagsMap = {
     [NotificationTypes.FAVOURITE]: I18nTags.notifications.favourited_your_status,
     [NotificationTypes.REBLOG]: I18nTags.notifications.boosted_your_status
   }
 
-  @Component({
-    components: {
-      'account-modal': AccountModal,
-    }
-  })
+  @Component({})
   class Card extends Vue {
 
     $t
@@ -67,6 +60,11 @@
     @Action('followAccountById') followAccountById
     @Action('unFollowAccountById') unFollowAccountById
 
+    @Mutation('updateNotificationsPanelStatus') updateNotificationsPanelStatus
+
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
+
     @State('appStatus') appStatus
 
     @State('relationships') relationships: {
@@ -74,10 +72,6 @@
     }
 
     @Getter('getAccountDisplayName') getAccountDisplayName
-
-    isAccountModalOpening: boolean = false
-
-    userId: string = ''
 
     onNotificationContentClick () {}
 
@@ -99,8 +93,9 @@
     }
 
     onCheckUserAccountPage (account: mastodonentities.Account) {
-        this.isAccountModalOpening = true
-        this.userId = account.id
+      this.updateSelectedAccountId(account.id)
+      this.updateAccountModalStatus(true)
+      this.updateNotificationsPanelStatus(false)
     }
 
     getNotificationSubTitle (notification) {
@@ -124,8 +119,9 @@
     async onNotificationCardClick (notification: mastodonentities.Notification) {
       if (!notification.status) {
         if (notification.type === NotificationTypes.FOLLOW) {
-          this.isAccountModalOpening = true
-          this.userId = notification.account.id
+          this.updateSelectedAccountId(notification.account.id)
+          this.updateAccountModalStatus(true)
+          this.updateNotificationsPanelStatus(false)
         }
       } else {
         this.isLoadingSingleCard = false

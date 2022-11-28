@@ -64,6 +64,10 @@ const state: cuckoostore.stateInfo = {
 
     isNotificationsPanelOpened: false,
 
+    isAccountModalOpened: false,
+
+    selectedAccountId: '',
+
     unreadNotificationCount: 0,
 
     isEditingThemeMode: false,

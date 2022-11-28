@@ -50,23 +50,16 @@
       </mu-list>
     </mu-popover>
 
-    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
-
   </mu-card-header>
 </template>
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import { Getter, State, Action } from 'vuex-class'
+  import { Getter, State, Action, Mutation } from 'vuex-class'
   import * as moment from 'moment'
   import { mastodonentities } from '@/interface'
-  import AccountModal from '@/components/AccountModal'
 
-  @Component({
-    components: {
-      'account-modal': AccountModal,
-    }
-  })
+  @Component({})
   class CardHeader extends Vue {
 
     @Prop() status: mastodonentities.Status
@@ -96,6 +89,9 @@
 
     @Action('deleteStatus') deleteStatus
 
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
+
     shouldShowHeaderActionButtonGroup = false
 
     shouldOpenMoreOperationPopOver = false
@@ -103,10 +99,6 @@
     moreOperationTriggerBtn: any = null
 
     leftAreaStyle = null
-
-    isAccountModalOpening: boolean = false
-
-    userId: string = ''
 
     mounted () {
       if (this.isOAuthUser) {
@@ -121,8 +113,8 @@
     }
 
     onCheckUserAccountPage () {
-      this.isAccountModalOpening = true
-      this.userId = this.status.account.id
+      this.updateSelectedAccountId(this.status.account.id)
+      this.updateAccountModalStatus(true)
     }
 
     onCheckStatusInSinglePage () {

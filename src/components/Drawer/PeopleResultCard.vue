@@ -17,22 +17,15 @@
     <mu-list-item-action v-if="currentUserAccount.id !== account.id && relationships[account.id] && relationships[account.id].following">
       <mu-icon class="operate-btn secondary-theme-text-color" value="person_add_disabled" @click="onUnFollowingAccount"/>
     </mu-list-item-action>
-
-    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
   </mu-list-item>
 </template>
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import { State, Action, Getter } from 'vuex-class'
+  import { State, Action, Getter, Mutation } from 'vuex-class'
   import { mastodonentities } from '@/interface'
-  import AccountModal from '@/components/AccountModal'
 
-  @Component({
-    components: {
-      'account-modal': AccountModal,
-    }
-  })
+  @Component({})
   class PeopleResultCard extends Vue {
 
     isLoading: boolean = false
@@ -51,13 +44,12 @@
     @Action('followAccountById') followAccountById
     @Action('unFollowAccountById') unFollowAccountById
 
-    isAccountModalOpening: boolean = false
-
-    userId: string = ''
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
 
     onCheckUserAccountPage (account: mastodonentities.Account) {
-        this.isAccountModalOpening = true
-        this.userId = account.id
+      this.updateSelectedAccountId(account.id)
+      this.updateAccountModalStatus(true)
     }
 
     async onFollowingAccount () {

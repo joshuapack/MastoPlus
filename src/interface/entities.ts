@@ -233,6 +233,8 @@ export namespace mastodonentities {
     followed_by: boolean
     // Whether the user is currently blocking the account
     blocking: boolean
+    // Whether the user is being blocked by the
+    blocked_by: boolean
     // Whether the user is currently muting the account
     muting: boolean
     // Whether the user is also muting notifications	no
@@ -245,6 +247,8 @@ export namespace mastodonentities {
     showing_reblogs: boolean
     // Whether the user is currently endorsing the account
     endorsed: boolean
+    // User's notes on account
+    note: boolean
   }
 
   export interface Card {

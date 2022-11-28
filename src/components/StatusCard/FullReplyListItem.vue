@@ -101,27 +101,23 @@
         </mu-list-item>
       </mu-list>
     </mu-popover>
-
-    <account-modal :open.sync="isAccountModalOpening" :userId="userId" />
   </div>
 </template>
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import { Getter, Action, State } from 'vuex-class'
+  import { Getter, Action, State, Mutation } from 'vuex-class'
   import * as moment from 'moment'
   import { mastodonentities } from "@/interface"
   import MediaPanel from './MediaPanel'
   import LinkPreviewPanel from './LinkPreviewPanel'
   import {getNetEaseMusicFrameLinkFromContentLink, getYoutubeVideoFrameLinkFromContentLink } from '@/util'
   import * as $ from "jquery"
-  import AccountModal from '@/components/AccountModal'
 
   @Component({
     components: {
       'media-panel': MediaPanel,
       'link-preview-panel': LinkPreviewPanel,
-      'account-modal': AccountModal,
     }
   })
   class FullReplyListItem extends Vue {
@@ -148,6 +144,9 @@
 
     @Getter('getAccountAtName') getAccountAtName
 
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
+
     isListItemLoading: boolean = false
 
     shouldShowMoreOperationTriggerBtn: boolean = false
@@ -159,10 +158,6 @@
     operationAreaStyle = null
 
     youtubeVideoIFrameHeight = 0
-
-    isAccountModalOpening: boolean = false
-
-    userId: string = ''
 
     get hasLinkCardInfo () {
       return this.cardMap[this.status.id]
@@ -227,8 +222,8 @@
     }
 
     onCheckUserAccountPage () {
-      this.isAccountModalOpening = true
-      this.userId = this.status.account.id
+      this.updateSelectedAccountId(this.status.account.id)
+      this.updateAccountModalStatus(true)
     }
 
     async onDeleteStatus () {

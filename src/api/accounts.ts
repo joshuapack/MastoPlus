@@ -39,6 +39,10 @@ async function fetchCurrentUserAccountInfo (): Promise<{ data: mastodonentities.
   return Vue.http.get(patchApiUri('/api/v1/accounts/verify_credentials')) as any
 }
 
+async function fetchAccountStatuses (id: string) {
+  return Vue.http.get(patchApiUri(`/api/v1/accounts/${id}/statuses`)) as any
+}
+
 async function updateUserAccountInfo (formData: updateAccountFormData): Promise<{ data: mastodonentities.AuthenticatedAccount }> {
   return Vue.http.patch(patchApiUri('/api/v1/accounts/update_credentials'), formData) as any
 }
@@ -63,6 +67,7 @@ export {
   fetchAccountInfoByName,
   fetchAccountInfoById,
   fetchCurrentUserAccountInfo,
+  fetchAccountStatuses,
   updateUserAccountInfo,
   fetchRelationships,
   followAccountById,

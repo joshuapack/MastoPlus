@@ -1,15 +1,26 @@
 <template>
-    <mu-dialog dialog-class="account-modal-container"
-               v-if="isDialogOpening"
-               :open.sync="isDialogOpening" overlay-color="rgba(0,0,0,0.8)"
-               :overlay-opacity="1" @close="onTryCloseDialog" :transition="transition"
-               :width="dialogWidth" :fullscreen="shouldDialogFullScreen" v-loading="isLoading">
+    <mu-dialog
+      dialog-class="account-modal-container"
+      v-if="isDialogOpening"
+      :open.sync="isDialogOpening" overlay-color="rgba(0,0,0,0.8)"
+      :overlay-opacity="1" @close="onTryCloseDialog" :transition="transition"
+      :width="dialogWidth" :fullscreen="shouldDialogFullScreen" v-loading="isLoading"
+    >
   
       <div class="dialog-header">
         <div class="left-area">
-            <mu-button icon @click="onTryCloseDialog">
-              <mu-icon value="close"></mu-icon>
-            </mu-button>
+          <mu-button icon @click="onTryCloseDialog">
+            <mu-icon value="close"></mu-icon>
+          </mu-button>
+          <div v-if="selectedUserAccount.id === currentUserAccount.id" class="tags">Your Account</div>
+          <div v-if="isFollowingYou()" class="tags">Follows You</div>
+          <div v-if="isBlocking()" class="tags">Blocked</div>
+          <div v-if="isBlockedBy()" class="tags">Being Blocked</div>
+          <div v-if="isBlockedDomain()" class="tags">Blocked Server</div>
+          <div v-if="isMuting()" class="tags">Muting</div>
+          <div v-if="isMutingNotifications()" class="tags">Muting Notifications</div>
+          <div v-if="isRequested()" class="tags">Requested</div>
+          <div v-if="selectedUserAccount.bot" class="tags">Bot</div>
         </div>
   
         <div class="right-area">
@@ -37,10 +48,28 @@
             <a class="user-name primary-read-text-color" :href="selectedUserAccount.url" v-html="selectedUserAccount.display_name" target="_blank"></a>
           </div>
           <div><a :href="selectedUserAccount.url" target="_blank">@{{selectedUserAccount.acct}}</a></div>
+          <div v-html="personalNote()"></div>
           <div v-html="selectedUserAccount.note"></div>
+          <ul>
+            <li v-for="field in selectedUserAccount.fields">
+            <mu-icon class="check_mark" value="check_box" v-if="field.verified_at"></mu-icon> {{ field.name }} - <span v-html="field.value"></span>
+            </li>
+          </ul>
         </div>
-  
-        <div class="bottom-area">
+        <div class="flex-container">
+          <div>{{ selectedUserAccount.statuses_count }} Posts</div>
+          <div>{{ selectedUserAccount.following_count }} Following</div>
+          <div>{{ selectedUserAccount.followers_count }} Followers</div>
+        </div>
+        <div class="profile-posts">
+          <div class="center">
+            <mu-button color="primary">
+              Show Posts
+            </mu-button>
+          </div>
+        </div>
+        <div class="bottom-area center">
+          <a :href="selectedUserAccount.url" target="_blank">Browse more on the original profile</a>
         </div>
       </section>
   
@@ -130,14 +159,54 @@
       }
 
       shouldShowFollowOperateBtn (account: mastodonentities.Account, operateType: string) {
+        if (account.id === this.currentUserAccount.id) return undefined
         let typeCheckOK = false
         if (operateType === 'FOLLOW') {
           typeCheckOK = this.relationships[account.id] && !this.relationships[account.id].following
         } else if (operateType === 'UN_FOLLOW') {
           typeCheckOK = this.relationships[account.id] && this.relationships[account.id].following
         }
-        if (account.id === this.currentUserAccount.id) return undefined
         return typeCheckOK
+      }
+
+      isFollowingYou () {
+        if (this.selectedUserAccount.id === this.currentUserAccount.id) return undefined
+        return this.relationships[this.selectedUserAccount.id] && this.relationships[this.selectedUserAccount.id].followed_by;
+      }
+
+      isBlocking () {
+        if (this.selectedUserAccount.id === this.currentUserAccount.id) return undefined
+        return this.relationships[this.selectedUserAccount.id] && this.relationships[this.selectedUserAccount.id].blocking;
+      }
+
+      isBlockedBy () {
+        if (this.selectedUserAccount.id === this.currentUserAccount.id) return undefined
+        return this.relationships[this.selectedUserAccount.id] && this.relationships[this.selectedUserAccount.id].blocked_by;
+      }
+
+      isBlockedDomain () {
+        if (this.selectedUserAccount.id === this.currentUserAccount.id) return undefined
+        return this.relationships[this.selectedUserAccount.id] && this.relationships[this.selectedUserAccount.id].domain_blocking;
+      }
+
+      isMuting () {
+        if (this.selectedUserAccount.id === this.currentUserAccount.id) return undefined
+        return this.relationships[this.selectedUserAccount.id] && this.relationships[this.selectedUserAccount.id].muting;
+      }
+
+      isMutingNotifications () {
+        if (this.selectedUserAccount.id === this.currentUserAccount.id) return undefined
+        return this.relationships[this.selectedUserAccount.id] && this.relationships[this.selectedUserAccount.id].muting_notifications;
+      }
+
+      isRequested () {
+        if (this.selectedUserAccount.id === this.currentUserAccount.id) return undefined
+        return this.relationships[this.selectedUserAccount.id] && this.relationships[this.selectedUserAccount.id].requested;
+      }
+
+      personalNote () {
+        if (this.selectedUserAccount.id === this.currentUserAccount.id) return ''
+        return this.relationships[this.selectedUserAccount.id] && this.relationships[this.selectedUserAccount.id].note;
       }
   
       closeDialog () {
@@ -195,10 +264,17 @@
         .description {
           padding: 10px;
         }
+
+        .profile-posts {
+          padding: 10px;
+        }
+
+        .center {
+          text-align: center;
+        }
   
         .bottom-area {
-          display: flex;
-          justify-content: space-between;
+          padding: 10px;
         }
   
         @media (max-width: 530px) {

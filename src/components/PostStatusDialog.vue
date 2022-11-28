@@ -1,6 +1,6 @@
 <template>
   <mu-dialog dialog-class="post-status-dialog-container"
-             :open.sync="isDialogOpening" overlay-color="rgba(0,0,0,0.12)"
+             :open.sync="isDialogOpening" overlay-color="rgba(0,0,0,0.8)"
              :overlay-opacity="1" @close="onTryCloseDialog" :transition="transition"
              :width="dialogWidth" :fullscreen="shouldDialogFullScreen" v-loading="isPostLoading">
 

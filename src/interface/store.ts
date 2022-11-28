@@ -48,6 +48,8 @@ export namespace cuckoostore {
       documentWidth: number
       isDrawerOpened: boolean
       isNotificationsPanelOpened: boolean
+      isAccountModalOpened: boolean
+      selectedAccountId: string
       unreadNotificationCount: number
       isEditingThemeMode: boolean
       shouldShowThemeEditPanel: boolean

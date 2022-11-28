@@ -33,6 +33,8 @@
 
       <span class="route-info" v-if="shouldShowRouteInfo">{{pathToRouteInfo[$route.path].name}}</span>
     </mu-appbar>
+
+    <account-modal :open.sync="appStatus.isAccountModalOpened" :userId="appStatus.selectedAccountId" />
   </div>
 </template>
 
@@ -43,6 +45,7 @@
   import { cuckoostore } from '@/interface'
   import { animatedScrollTo } from '@/util'
   import Notifications from '@/components/Notifications/index'
+  import AccountModal from '@/components/AccountModal'
 
   // todo 统一位置管理
   const pathToRouteInfo = {
@@ -59,7 +62,8 @@
 
   @Component({
     components: {
-      'notifications': Notifications
+      'notifications': Notifications,
+      'account-modal': AccountModal,
     }
   })
   class Header extends Vue {

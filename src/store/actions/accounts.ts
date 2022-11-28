@@ -27,7 +27,15 @@ const accounts = {
     } catch (e) {
 
     }
-  }
+  },
+
+  async fetchAccountStatuses ({ commit }, id: string) {
+    try {
+      return await Api.accounts.fetchAccountStatuses(id)
+    } catch (e) {
+
+    }
+  },
 }
 
 export default accounts
