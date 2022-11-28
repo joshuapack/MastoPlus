@@ -50,7 +50,7 @@
         <a class="secondary-read-text-color link-text" href="https://github.com/joshuapack/MastoPlus" target="_blank">
           ©{{(new Date().getFullYear()).toString() }} MastoPlus</a>
           •
-          v0.4.5</a>
+          v0.4.6</a>
       </div>
       <a class="secondary-read-text-color link-text" :href="mastodonServerUri" target="_blank">{{$t($i18nTags.drawer.toHostInstance)}}</a>
       <div style="margin-top: 6px">

@@ -291,7 +291,6 @@
 
     section {
       .header-img-div {
-          overflow: hidden;
           height: 145px;
           position: relative;
           background: #1f232b;
