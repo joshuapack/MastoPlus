@@ -22,12 +22,25 @@ interface updateAccountFormData {
   }
 }
 
-async function fetchAccountInfoById () {
+async function fetchAccountInfoByName (acct) {
+  return Vue.http.get(patchApiUri('/api/v1/accounts/lookup'), {
+    params: {
+      acct,
+      skip_webfinger: true
+    }
+  }) as any
+}
 
+async function fetchAccountInfoById (id: string) {
+  return Vue.http.get(patchApiUri(`/api/v1/accounts/${id}`)) as any
 }
 
 async function fetchCurrentUserAccountInfo (): Promise<{ data: mastodonentities.AuthenticatedAccount }> {
   return Vue.http.get(patchApiUri('/api/v1/accounts/verify_credentials')) as any
+}
+
+async function fetchAccountStatuses (id: string) {
+  return Vue.http.get(patchApiUri(`/api/v1/accounts/${id}/statuses`)) as any
 }
 
 async function updateUserAccountInfo (formData: updateAccountFormData): Promise<{ data: mastodonentities.AuthenticatedAccount }> {
@@ -51,8 +64,10 @@ async function unFollowAccountById (id: string) {
 }
 
 export {
+  fetchAccountInfoByName,
   fetchAccountInfoById,
   fetchCurrentUserAccountInfo,
+  fetchAccountStatuses,
   updateUserAccountInfo,
   fetchRelationships,
   followAccountById,

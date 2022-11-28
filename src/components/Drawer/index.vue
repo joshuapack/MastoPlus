@@ -50,14 +50,13 @@
         <a class="secondary-read-text-color link-text" href="https://github.com/joshuapack/MastoPlus" target="_blank">
           ©{{(new Date().getFullYear()).toString() }} MastoPlus</a>
           •
-          V0.4.2</a>
+          v0.4.5</a>
       </div>
       <a class="secondary-read-text-color link-text" :href="mastodonServerUri" target="_blank">{{$t($i18nTags.drawer.toHostInstance)}}</a>
       <div style="margin-top: 6px">
         <a class="secondary-read-text-color link-text" @click="onTryLogout">{{$t($i18nTags.drawer.logout)}}</a>
       </div>
     </div>
-
   </mu-drawer>
 </template>
 
@@ -68,6 +67,7 @@
   import { TimeLineTypes, UiWidthCheckConstants, RoutersInfo, I18nTags } from '@/constant'
   import Search from './Search'
   import store from '@/store'
+
 
   const baseRouterInfoList = [
     {
@@ -104,7 +104,7 @@
 
   @Component({
     components: {
-      'search': Search
+      'search': Search,
     }
   })
   class Drawer extends Vue {
@@ -136,6 +136,10 @@
     @Mutation('updateTags') updateTags
 
     @Mutation('clearAllOAuthInfo') clearAllOAuthInfo
+
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
 
     @Action('updateTimeLineStatuses') updateTimeLineStatuses
 
@@ -182,15 +186,8 @@
 
     async onBaseRouteItemClick (clickedRouterValue: string) {
       if (clickedRouterValue === 'profile') {
-        // todo
-        // this.$router.push({
-        //   name: this.$routersInfo.accounts.name,
-        //   params: {
-        //     accountId: this.currentUserAccount.id
-        //   }
-        // })
-
-        return window.open(this.currentUserAccount.url, '_blank')
+        this.updateSelectedAccountId(this.currentUserAccount.id)
+        this.updateAccountModalStatus(true)
       } else {
 
         const targetPath = baseRouterInfoList.find(routerInfo => routerInfo.value === clickedRouterValue).to

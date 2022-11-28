@@ -187,7 +187,7 @@ function easeInOutQuad (t, b, c, d) {
   return -c/2 * (t*(t-2) - 1) + b
 }
 
-const requestAnimFrame = (function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||function(callback){window.setTimeout(callback,1000/60);};})()
+const requestAnimFrame = (function(){return window.requestAnimationFrame||function(callback){window.setTimeout(callback,1000/60);};})()
 
 export function animatedScrollTo (element: HTMLElement, to: number, duration: number, callback?) {
   const start = element.scrollTop,

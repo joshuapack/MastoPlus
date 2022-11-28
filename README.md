@@ -2,6 +2,8 @@
 
 Preview link: [https://mastoplus.com](https://mastoplus.com)
 
+Requires Node 16.13.0 - just use `nvm install 16.13.0` and `nvm use 16`
+
 Start project.
 ```
 npm i

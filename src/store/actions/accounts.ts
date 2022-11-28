@@ -18,7 +18,25 @@ const accounts = {
     } catch (e) {
 
     }
-  }
+  },
+
+  async fetchAccountInfoById ({ commit }, id: string) {
+    try {
+      const result = await Api.accounts.fetchAccountInfoById(id)
+      commit('updateSelectedUserAccount', result.data)
+    } catch (e) {
+
+    }
+  },
+
+  async fetchAccountStatuses ({ commit }, id: string) {
+    try {
+      const result = await Api.accounts.fetchAccountStatuses(id)
+      commit('updateUserStatusMap', { [id]: result.data })
+    } catch (e) {
+
+    }
+  },
 }
 
 export default accounts

@@ -34,6 +34,8 @@ const state: cuckoostore.stateInfo = {
 
   currentUserAccount: getLocalSetting('currentUserAccount', null),
 
+  selectedUserAccount: getLocalSetting('selectedUserAccount', null),
+
   timelines: {
     home: getLocalSetting('home', []),
     public: [],
@@ -46,6 +48,8 @@ const state: cuckoostore.stateInfo = {
   contextMap: getLocalSetting('contextMap', {}),
 
   statusMap: getLocalSetting('statusMap', {}),
+
+  userStatusMap: getLocalSetting('userStatusMap', {}),
 
   cardMap: getLocalSetting('cardMap', {}),
 
@@ -61,6 +65,10 @@ const state: cuckoostore.stateInfo = {
     isDrawerOpened: window.innerWidth > UiWidthCheckConstants.DRAWER_DOCKING_BOUNDARY,
 
     isNotificationsPanelOpened: false,
+
+    isAccountModalOpened: false,
+
+    selectedAccountId: '',
 
     unreadNotificationCount: 0,
 

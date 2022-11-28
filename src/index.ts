@@ -2,11 +2,11 @@ const Toast = require('muse-ui-toast').default
 const Message = require('muse-ui-message').default
 const Loading = require('muse-ui-loading').default
 const NProgress = require('muse-ui-progress').default
+const VueResource = require('vue-resource').default
 import Vue from 'vue'
 import MuseUI from 'muse-ui'
 import 'muse-ui-loading/dist/muse-ui-loading.css'
 import 'muse-ui-progress/dist/muse-ui-progress.css'
-import VueResource from 'vue-resource'
 import i18n from './i18n'
 import store from './store'
 import router from './router'

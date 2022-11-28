@@ -359,6 +359,33 @@ a {
 .dialog-theme-bg-color {
   background-color: @dialogBackgroundColor;
 }
+
+.tags {
+  margin: 0px 5px;
+  padding: 5px;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  color: #FFF;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-container > div {
+  background-color: rgba(100,100,100,0.5);
+  width: calc(100%/3 - 20px);
+  margin: 10px;
+  text-align: center;
+  color: @textColor;
+}
+
+.check_mark {
+  color: #009900;
+  vertical-align: middle;
+}
 `
 
 import baseColor from './basecolor'

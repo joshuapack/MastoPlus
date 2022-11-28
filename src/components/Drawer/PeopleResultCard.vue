@@ -22,7 +22,7 @@
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import { State, Action, Getter } from 'vuex-class'
+  import { State, Action, Getter, Mutation } from 'vuex-class'
   import { mastodonentities } from '@/interface'
 
   @Component({})
@@ -44,8 +44,12 @@
     @Action('followAccountById') followAccountById
     @Action('unFollowAccountById') unFollowAccountById
 
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
+
     onCheckUserAccountPage (account: mastodonentities.Account) {
-      window.open(account.url, "_blank")
+      this.updateSelectedAccountId(account.id)
+      this.updateAccountModalStatus(true)
     }
 
     async onFollowingAccount () {

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <cuckoo-plus-header v-if="!$route.meta.hideHeader"/>
-    <cuckoo-plus-drawer v-if="!$route.meta.hideDrawer && isOAuthUser"/>
+    <mp-header v-if="!$route.meta.hideHeader"/>
+    <mp-drawer v-if="!$route.meta.hideDrawer && isOAuthUser"/>
     <mu-container :fluid="true" class="app-content" :style="appContentStyle">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive" />
@@ -24,8 +24,8 @@
 
   @Component({
     components: {
-      'cuckoo-plus-header': Header,
-      'cuckoo-plus-drawer': Drawer,
+      'mp-header': Header,
+      'mp-drawer': Drawer,
       'theme-edit-panel': ThemeEditPanel
     }
   })

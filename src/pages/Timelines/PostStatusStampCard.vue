@@ -20,7 +20,7 @@
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator'
-  import { State } from 'vuex-class'
+  import { State, Mutation } from 'vuex-class'
   import { mastodonentities } from '@/interface'
 
   @Component({})
@@ -28,8 +28,12 @@
 
     @State('currentUserAccount') currentUserAccount: mastodonentities.AuthenticatedAccount
 
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
+
     onCheckUserAccountPage () {
-      window.open(this.currentUserAccount.url, "_blank")
+      this.updateSelectedAccountId(this.currentUserAccount.id)
+      this.updateAccountModalStatus(true)
     }
 
     onStampCardClick () {

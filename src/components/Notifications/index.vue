@@ -19,8 +19,10 @@
           </mu-flex>
 
           <mu-list textline="three-line">
-            <notification-card :notification="notification" @updateCurrentCheckStatus="onUpdateCurrentCheckStatus"
-                               v-for="(notification, index) in notificationsToShow" :key="index"/>
+            <notification-card
+              :notification="notification"
+              v-for="(notification, index) in notificationsToShow" :key="index"
+            />
           </mu-list>
 
         </mu-load-more>
@@ -126,20 +128,6 @@
         isFetchMore
       })
       this.isLoadingNotifications = false
-    }
-
-    onUpdateCurrentCheckStatus (targetStatus: mastodonentities.Status) {
-
-      if (this.appStatus.documentWidth < UiWidthCheckConstants.NOTIFICATION_DIALOG_TOGGLE_WIDTH) {
-        this.updateNotificationsPanelStatus(false)
-        return this.$router.push({
-          name: this.$routersInfo.statuses.name,
-          params: { statusId: targetStatus.id }
-        })
-      }
-
-      this.currentCheckStatus = targetStatus
-      this.shouldShowTargetStatus = true
     }
   }
 

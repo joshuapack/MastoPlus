@@ -106,7 +106,7 @@
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import { Getter, Action, State } from 'vuex-class'
+  import { Getter, Action, State, Mutation } from 'vuex-class'
   import * as moment from 'moment'
   import { mastodonentities } from "@/interface"
   import MediaPanel from './MediaPanel'
@@ -143,6 +143,9 @@
     @Action('deleteStatus') deleteStatus
 
     @Getter('getAccountAtName') getAccountAtName
+
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
 
     isListItemLoading: boolean = false
 
@@ -219,7 +222,8 @@
     }
 
     onCheckUserAccountPage () {
-      window.open(this.status.account.url, "_blank")
+      this.updateSelectedAccountId(this.status.account.id)
+      this.updateAccountModalStatus(true)
     }
 
     async onDeleteStatus () {

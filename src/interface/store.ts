@@ -6,6 +6,7 @@ export namespace cuckoostore {
     OAuthInfo: OAuthInfo
     mastodonServerUri: string
     currentUserAccount: mastodonentities.Account
+    selectedUserAccount: mastodonentities.Account
 
     timelines: {
       home: Array<string>
@@ -35,6 +36,8 @@ export namespace cuckoostore {
       [statusId: string]: mastodonentities.Status
     }
 
+    userStatusMap: Array<mastodonentities.Status>
+
     notifications: Array<mastodonentities.Notification>
 
     relationships: {
@@ -47,6 +50,8 @@ export namespace cuckoostore {
       documentWidth: number
       isDrawerOpened: boolean
       isNotificationsPanelOpened: boolean
+      isAccountModalOpened: boolean
+      selectedAccountId: string
       unreadNotificationCount: number
       isEditingThemeMode: boolean
       shouldShowThemeEditPanel: boolean

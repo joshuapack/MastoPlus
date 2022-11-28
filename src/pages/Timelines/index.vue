@@ -16,7 +16,8 @@
                          :shouldCollapseContent="true"
                          :key="status.id" :status="status" :style="[statusCardStyle,
                          isTimeLineNameEqualCurrentRoute(timeLineName) &&
-                         currentFocusCardId === status.id && cardFocusStyle]"/>
+                         currentFocusCardId === status.id && cardFocusStyle]"
+            />
           </template>
 
           <p class="no-more-status-notice secondary-read-text-color"
@@ -100,7 +101,7 @@
       'status-card': StatusCard,
       'post-status-dialog': PostStatusDialog,
       'new-status-notice-button': NewStatusNoticeButton,
-      'post-status-stamp-card': PostStatusStampCard
+      'post-status-stamp-card': PostStatusStampCard,
     }
   })
   class TimeLines extends Vue {

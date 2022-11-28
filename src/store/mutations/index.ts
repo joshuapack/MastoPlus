@@ -66,6 +66,35 @@ const statusesMutations = {
     })
   },
 
+  updateUserStatusMap (state: cuckoostore.stateInfo, newStatusMap) {
+    let userStatusMap = [];
+    Object.keys(newStatusMap).forEach(statusId => {
+      newStatusMap[statusId].forEach(status => {
+        // format content
+        const newStatus: mastodonentities.Status = status
+        newStatus.content = formatStatusContent(newStatus)
+  
+        // format reblog content
+        if (newStatus.reblog) newStatus.reblog.content = formatStatusContent(newStatus.reblog)
+  
+        // format spoiler text
+        if (newStatus.spoiler_text) newStatus.spoiler_text = formatHtml(newStatus.spoiler_text, { externalEmojis: newStatus.emojis })
+  
+        // format account display name
+        newStatus.account.display_name = formatAccountDisplayName(newStatus.account)
+  
+        // fix favourited and reblogged count sync bug
+        const checkTarget = newStatus.reblog || newStatus
+        if (checkTarget.favourited && checkTarget.favourites_count === 0) checkTarget.favourites_count = 1
+        if (checkTarget.reblogged && checkTarget.reblogs_count === 0) checkTarget.reblogs_count = 1
+  
+        // Vue.set(state.statusMap, statusId, newStatusMap[statusId])
+        userStatusMap.push(status)
+      })
+    })
+    state.userStatusMap = userStatusMap
+  },
+
   removeStatusFromStatusMapById (state: cuckoostore.stateInfo, statusId: string) {
     Vue.set(state.statusMap, statusId, undefined)
   },
@@ -120,6 +149,14 @@ const mutations = {
     state.currentUserAccount = currentUserAccount
 
     localStorage.setItem('currentUserAccount', JSON.stringify(currentUserAccount))
+  },
+
+  updateSelectedUserAccount (state: cuckoostore.stateInfo, selectedUserAccount: mastodonentities.Account) {
+    selectedUserAccount.display_name = formatAccountDisplayName(selectedUserAccount)
+
+    state.selectedUserAccount = selectedUserAccount
+
+    localStorage.setItem('selectedUserAccount', JSON.stringify(selectedUserAccount))
   },
 
   updateCustomEmojis (state: cuckoostore.stateInfo, customEmojis: Array<mastodonentities.Emoji>) {

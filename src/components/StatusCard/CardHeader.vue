@@ -55,7 +55,7 @@
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import { Getter, State, Action } from 'vuex-class'
+  import { Getter, State, Action, Mutation } from 'vuex-class'
   import * as moment from 'moment'
   import { mastodonentities } from '@/interface'
 
@@ -89,6 +89,9 @@
 
     @Action('deleteStatus') deleteStatus
 
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
+
     shouldShowHeaderActionButtonGroup = false
 
     shouldOpenMoreOperationPopOver = false
@@ -110,7 +113,8 @@
     }
 
     onCheckUserAccountPage () {
-      window.open(this.status.account.url, "_blank")
+      this.updateSelectedAccountId(this.status.account.id)
+      this.updateAccountModalStatus(true)
     }
 
     onCheckStatusInSinglePage () {

@@ -25,7 +25,7 @@
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator'
-  import { State, Getter, Action } from 'vuex-class'
+  import { State, Getter, Action, Mutation } from 'vuex-class'
   import { NotificationTypes, ThemeNames, I18nTags } from '@/constant'
   import { mastodonentities } from '@/interface'
   import { prepareRootStatus, formatHtml } from "@/util"
@@ -60,6 +60,11 @@
     @Action('followAccountById') followAccountById
     @Action('unFollowAccountById') unFollowAccountById
 
+    @Mutation('updateNotificationsPanelStatus') updateNotificationsPanelStatus
+
+    @Mutation('updateSelectedAccountId') updateSelectedAccountId
+    @Mutation('updateAccountModalStatus') updateAccountModalStatus
+
     @State('appStatus') appStatus
 
     @State('relationships') relationships: {
@@ -88,7 +93,9 @@
     }
 
     onCheckUserAccountPage (account: mastodonentities.Account) {
-      window.open(account.url, "_blank")
+      this.updateSelectedAccountId(account.id)
+      this.updateAccountModalStatus(true)
+      this.updateNotificationsPanelStatus(false)
     }
 
     getNotificationSubTitle (notification) {
@@ -112,7 +119,9 @@
     async onNotificationCardClick (notification: mastodonentities.Notification) {
       if (!notification.status) {
         if (notification.type === NotificationTypes.FOLLOW) {
-          window.open(notification.account.url, "_blank")
+          this.updateSelectedAccountId(notification.account.id)
+          this.updateAccountModalStatus(true)
+          this.updateNotificationsPanelStatus(false)
         }
       } else {
         this.isLoadingSingleCard = false

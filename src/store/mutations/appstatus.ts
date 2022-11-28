@@ -13,6 +13,14 @@ export default {
     state.appStatus.isNotificationsPanelOpened = isNotificationsPanelOpened
   },
 
+  updateAccountModalStatus (state: cuckoostore.stateInfo, isAccountModalOpened: boolean) {
+    state.appStatus.isAccountModalOpened = isAccountModalOpened
+  },
+
+  updateSelectedAccountId (state: cuckoostore.stateInfo, selectedAccountId: string) {
+    state.appStatus.selectedAccountId = selectedAccountId
+  },
+
   updateUnreadNotificationCount (state: cuckoostore.stateInfo, count: number) {
     state.appStatus.unreadNotificationCount = count
   },
