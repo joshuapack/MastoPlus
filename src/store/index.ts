@@ -49,6 +49,8 @@ const state: cuckoostore.stateInfo = {
 
   statusMap: getLocalSetting('statusMap', {}),
 
+  userStatusMap: getLocalSetting('userStatusMap', {}),
+
   cardMap: getLocalSetting('cardMap', {}),
 
   customEmojis: getLocalSetting('customEmojis', []),

@@ -31,7 +31,8 @@ const accounts = {
 
   async fetchAccountStatuses ({ commit }, id: string) {
     try {
-      return await Api.accounts.fetchAccountStatuses(id)
+      const result = await Api.accounts.fetchAccountStatuses(id)
+      commit('updateUserStatusMap', { [id]: result.data })
     } catch (e) {
 
     }
