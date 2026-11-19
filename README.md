@@ -2,7 +2,7 @@
 
 Preview link: [https://mastoplus.com](https://mastoplus.com)
 
-Requires Node 16.13.0 - just use `nvm install 16.13.0` and `nvm use 16`
+Requires Node 22.12+ (needed by wrangler).
 
 Start project.
 ```
@@ -16,6 +16,12 @@ Build project.
 npm run build
 ```
 the files located in public folder are all you need
+
+Deploy to Cloudflare (Workers static assets, config in `wrangler.jsonc`).
+```
+npx wrangler login
+npm run deploy
+```
 
 ## Notes
 

@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mastoplus",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    // Only the built site lives in ./public (index.html, sw.js, manifest, favicons, dist/bundle.js).
+    // Pointing at "." would upload node_modules, src, etc.
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}

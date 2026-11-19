@@ -2,8 +2,9 @@
   "name": "mastoplus",
   "description": "A third-party client for mastodon",
   "scripts": {
-    "dev": "webpack-dev-server --mode=development",
-    "build": "webpack --env=production --mode=production"
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --mode=development",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider webpack --env=production --mode=production",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "autosize": "^4.0.2",
@@ -50,9 +51,7 @@
     "css-loader": "^3.6.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
-    "node-sass": "^8.0.0",
     "raw-loader": "^0.5.1",
-    "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^8.4.0",
     "ts-node": "^10.9.1",
@@ -65,6 +64,7 @@
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1",
+    "wrangler": "^4.165.0",
     "yargs": "^17.6.2"
   },
   "babel": {
